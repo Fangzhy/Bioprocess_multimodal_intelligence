@@ -157,6 +157,8 @@ Status:
 
 **Goal:** create data you understand before introducing databases.
 
+**Status:** Complete and locally verified on October 3, 2026.
+
 Generate 50 batches over 10 days, with measurements every four hours. Simulate growth and decline in VCD, feed-related glucose changes, lactate accumulation and consumption, and increasing titer. Introduce controlled variation in seed density, media type, feed rate, DO stability, and pH variability.
 
 | Batch | Intended abnormal behavior |

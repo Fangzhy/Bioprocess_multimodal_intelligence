@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# local documents and data etc
+docs/LEARNING_PLAN.md
+
 # Distribution / packaging
 .Python
 build/
