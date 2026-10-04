@@ -4,7 +4,7 @@ Analyze bioreactor runs by combining process sensor data, experimental metadata,
 
 ## Application status
 
-Milestone 1 is complete. The minimal Streamlit application and project skeleton are implemented. Analytics and demo data will be added in later milestones; the functions below describe the intended application.
+Milestones 1 and 2 are complete. The minimal Streamlit application, project skeleton, and reproducible synthetic demonstration dataset are implemented. Analytics will be added in later milestones; the functions below describe the intended application.
 
 ## Application functions
 
@@ -76,7 +76,17 @@ When the OpenRouter integration is implemented, local credentials will use `.str
 
 ## Demo data
 
-The intended demo contains approximately 50 synthetic bioreactor runs, each spanning 10 days with measurements every 4 hours, along with experimental metadata, scientist notes, microscopy-style images, and final outcomes. Synthetic data and illustrative images will be labeled accordingly.
+The demo contains 50 synthetic bioreactor runs, each spanning 10 days with measurements every 4 hours. It includes 3,050 sensor rows, experimental metadata, 200 scientist notes, 150 microscopy-style images, and final outcomes. Five planted abnormal scenarios are stored separately for evaluation.
+
+Regenerate the dataset from the repository root:
+
+```powershell
+python -m src.data.generate_data
+```
+
+Generated tables are stored under `data/raw/`, scenario truth is stored under `data/evaluation/`, and PNG images are stored under `images/`. The generated `data/raw/manifest.json` records the seed, simulator version, units, assumptions, row counts, and table hashes. The notebook `notebooks/01_generate_data.ipynb` explains and plots the data-generation workflow.
+
+All generated records are synthetic educational data. The microscopy-style images are programmatic illustrations, not real microscopy measurements, and the simulator is not a validated biological process model.
 
 ## Project structure
 
@@ -85,6 +95,7 @@ The intended demo contains approximately 50 synthetic bioreactor runs, each span
 | `app.py` | Main Streamlit entry point |
 | `data/raw/` | Source synthetic or imported files before cleaning |
 | `data/processed/` | Cleaned datasets and prepared feature tables |
+| `data/evaluation/` | Planted scenario truth kept separate from normal model inputs |
 | `database/` | SQLite database files and later database assets |
 | `images/` | Synthetic or sourced microscopy images used by the demo |
 | `notebooks/` | Step-by-step experiments before stable code moves into `src/` |
@@ -94,5 +105,6 @@ The intended demo contains approximately 50 synthetic bioreactor runs, each span
 | `src/visualization/` | Shared Plotly and Streamlit visualization helpers |
 | `pages/` | Streamlit pages added during later milestones |
 | `docs/` | Project planning and learning documentation |
+| `tests/` | Reproducibility, integrity, and later application tests |
 | `requirements.txt` | Runtime and application dependencies |
 | `requirements-dev.txt` | Runtime dependencies plus notebook and test tools |

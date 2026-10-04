@@ -1,0 +1,201 @@
+text_id,batch_id,time_hr,text_type,content
+T0001,B001,0,experiment_description,Run started with Media_B and early_feed feeding.
+T0002,B001,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0003,B001,96,observation,Mid-run observation: VCD 8.4 million cells/mL and viability 98.4%.
+T0004,B001,168,observation,Late-stage culture appearance documented for comparison.
+T0005,B002,0,experiment_description,Run started with Media_B and early_feed feeding.
+T0006,B002,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0007,B002,96,observation,Mid-run observation: VCD 11.8 million cells/mL and viability 98.0%.
+T0008,B002,168,observation,Late-stage culture appearance documented for comparison.
+T0009,B003,0,experiment_description,Run started with Media_A and standard feeding.
+T0010,B003,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0011,B003,96,observation,Mid-run observation: VCD 9.6 million cells/mL and viability 98.4%.
+T0012,B003,168,observation,Late-stage culture appearance documented for comparison.
+T0013,B004,0,experiment_description,Run started with Media_A and standard feeding.
+T0014,B004,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0015,B004,96,observation,Mid-run observation: VCD 13.6 million cells/mL and viability 98.1%.
+T0016,B004,168,observation,Late-stage culture appearance documented for comparison.
+T0017,B005,0,experiment_description,Run started with Media_A and standard feeding.
+T0018,B005,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0019,B005,96,observation,Mid-run observation: VCD 7.8 million cells/mL and viability 98.3%.
+T0020,B005,168,observation,Late-stage culture appearance documented for comparison.
+T0021,B006,0,experiment_description,Run started with Media_C and standard feeding.
+T0022,B006,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0023,B006,96,observation,Mid-run observation: VCD 10.7 million cells/mL and viability 98.3%.
+T0024,B006,168,observation,Late-stage culture appearance documented for comparison.
+T0025,B007,0,experiment_description,Run started with Media_C and early_feed feeding.
+T0026,B007,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0027,B007,96,scientist_note,Lactate remained elevated after 72 h despite continued glucose availability.
+T0028,B007,168,observation,Late-stage culture appearance documented for comparison.
+T0029,B008,0,experiment_description,Run started with Media_B and standard feeding.
+T0030,B008,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0031,B008,96,observation,Mid-run observation: VCD 7.9 million cells/mL and viability 98.0%.
+T0032,B008,168,observation,Late-stage culture appearance documented for comparison.
+T0033,B009,0,experiment_description,Run started with Media_C and early_feed feeding.
+T0034,B009,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0035,B009,96,observation,Mid-run observation: VCD 11.5 million cells/mL and viability 98.0%.
+T0036,B009,168,observation,Late-stage culture appearance documented for comparison.
+T0037,B010,0,experiment_description,Run started with Media_B and intensified feeding.
+T0038,B010,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0039,B010,96,observation,Mid-run observation: VCD 7.8 million cells/mL and viability 98.0%.
+T0040,B010,168,observation,Late-stage culture appearance documented for comparison.
+T0041,B011,0,experiment_description,Run started with Media_A and standard feeding.
+T0042,B011,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0043,B011,96,observation,Mid-run observation: VCD 10.5 million cells/mL and viability 98.2%.
+T0044,B011,168,observation,Late-stage culture appearance documented for comparison.
+T0045,B012,0,experiment_description,Run started with Media_C and intensified feeding.
+T0046,B012,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0047,B012,96,observation,Mid-run observation: VCD 10.8 million cells/mL and viability 98.7%.
+T0048,B012,168,observation,Late-stage culture appearance documented for comparison.
+T0049,B013,0,experiment_description,Run started with Media_A and standard feeding.
+T0050,B013,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0051,B013,96,observation,Mid-run observation: VCD 11.5 million cells/mL and viability 98.2%.
+T0052,B013,168,observation,Late-stage culture appearance documented for comparison.
+T0053,B014,0,experiment_description,Run started with Media_C and standard feeding.
+T0054,B014,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0055,B014,84,scientist_note,DO became unstable after 72 h. Agitation was increased to support oxygen control.
+T0056,B014,168,observation,Late-stage culture appearance documented for comparison.
+T0057,B015,0,experiment_description,Run started with Media_A and standard feeding.
+T0058,B015,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0059,B015,96,observation,Mid-run observation: VCD 12.8 million cells/mL and viability 97.8%.
+T0060,B015,168,observation,Late-stage culture appearance documented for comparison.
+T0061,B016,0,experiment_description,Run started with Media_C and standard feeding.
+T0062,B016,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0063,B016,96,observation,Mid-run observation: VCD 11.7 million cells/mL and viability 97.7%.
+T0064,B016,168,observation,Late-stage culture appearance documented for comparison.
+T0065,B017,0,experiment_description,Run started with Media_B and standard feeding.
+T0066,B017,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0067,B017,96,observation,Mid-run observation: VCD 10.9 million cells/mL and viability 98.0%.
+T0068,B017,168,observation,Late-stage culture appearance documented for comparison.
+T0069,B018,0,experiment_description,Run started with Media_A and standard feeding.
+T0070,B018,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0071,B018,96,observation,Mid-run observation: VCD 9.0 million cells/mL and viability 98.3%.
+T0072,B018,168,observation,Late-stage culture appearance documented for comparison.
+T0073,B019,0,experiment_description,Run started with Media_A and standard feeding.
+T0074,B019,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0075,B019,96,observation,Mid-run observation: VCD 10.0 million cells/mL and viability 98.4%.
+T0076,B019,168,observation,Late-stage culture appearance documented for comparison.
+T0077,B020,0,experiment_description,Run started with Media_A and standard feeding.
+T0078,B020,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0079,B020,96,observation,Mid-run observation: VCD 10.2 million cells/mL and viability 98.2%.
+T0080,B020,168,observation,Late-stage culture appearance documented for comparison.
+T0081,B021,0,experiment_description,Run started with Media_B and standard feeding.
+T0082,B021,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0083,B021,96,observation,Mid-run observation: VCD 11.3 million cells/mL and viability 98.2%.
+T0084,B021,168,observation,Late-stage culture appearance documented for comparison.
+T0085,B022,0,experiment_description,Run started with Media_B and standard feeding.
+T0086,B022,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0087,B022,96,observation,Mid-run observation: VCD 9.5 million cells/mL and viability 98.3%.
+T0088,B022,168,observation,Late-stage culture appearance documented for comparison.
+T0089,B023,0,experiment_description,Run started with Media_C and standard feeding.
+T0090,B023,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0091,B023,120,observation,Cell growth was slower than historical runs after day 4.
+T0092,B023,168,observation,Late-stage culture appearance documented for comparison.
+T0093,B024,0,experiment_description,Run started with Media_B and standard feeding.
+T0094,B024,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0095,B024,96,observation,Mid-run observation: VCD 10.6 million cells/mL and viability 97.8%.
+T0096,B024,168,observation,Late-stage culture appearance documented for comparison.
+T0097,B025,0,experiment_description,Run started with Media_B and early_feed feeding.
+T0098,B025,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0099,B025,96,observation,Mid-run observation: VCD 9.1 million cells/mL and viability 98.3%.
+T0100,B025,168,observation,Late-stage culture appearance documented for comparison.
+T0101,B026,0,experiment_description,Run started with Media_B and intensified feeding.
+T0102,B026,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0103,B026,96,observation,Mid-run observation: VCD 10.4 million cells/mL and viability 98.3%.
+T0104,B026,168,observation,Late-stage culture appearance documented for comparison.
+T0105,B027,0,experiment_description,Run started with Media_B and standard feeding.
+T0106,B027,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0107,B027,96,observation,Mid-run observation: VCD 8.7 million cells/mL and viability 98.3%.
+T0108,B027,168,observation,Late-stage culture appearance documented for comparison.
+T0109,B028,0,experiment_description,Run started with Media_C and standard feeding.
+T0110,B028,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0111,B028,96,observation,Mid-run observation: VCD 8.1 million cells/mL and viability 98.4%.
+T0112,B028,168,observation,Late-stage culture appearance documented for comparison.
+T0113,B029,0,experiment_description,Run started with Media_A and early_feed feeding.
+T0114,B029,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0115,B029,96,observation,Mid-run observation: VCD 9.7 million cells/mL and viability 97.9%.
+T0116,B029,168,observation,Late-stage culture appearance documented for comparison.
+T0117,B030,0,experiment_description,Run started with Media_C and standard feeding.
+T0118,B030,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0119,B030,96,observation,Mid-run observation: VCD 8.9 million cells/mL and viability 98.1%.
+T0120,B030,168,observation,Late-stage culture appearance documented for comparison.
+T0121,B031,0,experiment_description,Run started with Media_A and standard feeding.
+T0122,B031,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0123,B031,96,observation,Large cell aggregates were visible in the 96 h microscopy sample.
+T0124,B031,168,observation,Late-stage culture appearance documented for comparison.
+T0125,B032,0,experiment_description,Run started with Media_C and standard feeding.
+T0126,B032,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0127,B032,96,observation,Mid-run observation: VCD 8.3 million cells/mL and viability 97.7%.
+T0128,B032,168,observation,Late-stage culture appearance documented for comparison.
+T0129,B033,0,experiment_description,Run started with Media_A and early_feed feeding.
+T0130,B033,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0131,B033,96,observation,Mid-run observation: VCD 8.1 million cells/mL and viability 97.6%.
+T0132,B033,168,observation,Late-stage culture appearance documented for comparison.
+T0133,B034,0,experiment_description,Run started with Media_A and standard feeding.
+T0134,B034,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0135,B034,96,observation,Mid-run observation: VCD 10.0 million cells/mL and viability 98.4%.
+T0136,B034,168,observation,Late-stage culture appearance documented for comparison.
+T0137,B035,0,experiment_description,Run started with Media_B and standard feeding.
+T0138,B035,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0139,B035,96,observation,Mid-run observation: VCD 9.9 million cells/mL and viability 98.3%.
+T0140,B035,168,observation,Late-stage culture appearance documented for comparison.
+T0141,B036,0,experiment_description,Run started with Media_A and standard feeding.
+T0142,B036,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0143,B036,96,observation,Mid-run observation: VCD 9.0 million cells/mL and viability 98.1%.
+T0144,B036,168,observation,Late-stage culture appearance documented for comparison.
+T0145,B037,0,experiment_description,Run started with Media_B and standard feeding.
+T0146,B037,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0147,B037,96,observation,Mid-run observation: VCD 10.5 million cells/mL and viability 98.0%.
+T0148,B037,168,observation,Late-stage culture appearance documented for comparison.
+T0149,B038,0,experiment_description,Run started with Media_A and standard feeding.
+T0150,B038,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0151,B038,96,observation,Mid-run observation: VCD 10.3 million cells/mL and viability 98.1%.
+T0152,B038,168,observation,Late-stage culture appearance documented for comparison.
+T0153,B039,0,experiment_description,Run started with Media_B and intensified feeding.
+T0154,B039,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0155,B039,96,observation,Mid-run observation: VCD 11.1 million cells/mL and viability 97.8%.
+T0156,B039,168,observation,Late-stage culture appearance documented for comparison.
+T0157,B040,0,experiment_description,Run started with Media_B and standard feeding.
+T0158,B040,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0159,B040,96,observation,Mid-run observation: VCD 9.1 million cells/mL and viability 98.3%.
+T0160,B040,168,observation,Late-stage culture appearance documented for comparison.
+T0161,B041,0,experiment_description,Run started with Media_A and standard feeding.
+T0162,B041,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0163,B041,96,observation,Mid-run observation: VCD 11.3 million cells/mL and viability 98.1%.
+T0164,B041,168,observation,Late-stage culture appearance documented for comparison.
+T0165,B042,0,experiment_description,Run started with Media_A and standard feeding.
+T0166,B042,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0167,B042,96,observation,Mid-run observation: VCD 13.9 million cells/mL and viability 98.5%.
+T0168,B042,168,observation,Late-stage culture appearance documented for comparison.
+T0169,B043,0,experiment_description,Run started with Media_C and standard feeding.
+T0170,B043,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0171,B043,96,observation,Mid-run observation: VCD 10.2 million cells/mL and viability 98.2%.
+T0172,B043,168,observation,Late-stage culture appearance documented for comparison.
+T0173,B044,0,experiment_description,Run started with Media_A and intensified feeding.
+T0174,B044,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0175,B044,168,observation,Late-stage culture appearance documented for comparison.
+T0176,B044,192,scientist_note,Late-run product accumulation was below the expected trajectory.
+T0177,B045,0,experiment_description,Run started with Media_C and standard feeding.
+T0178,B045,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0179,B045,96,observation,Mid-run observation: VCD 11.3 million cells/mL and viability 98.6%.
+T0180,B045,168,observation,Late-stage culture appearance documented for comparison.
+T0181,B046,0,experiment_description,Run started with Media_A and intensified feeding.
+T0182,B046,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0183,B046,96,observation,Mid-run observation: VCD 7.3 million cells/mL and viability 98.1%.
+T0184,B046,168,observation,Late-stage culture appearance documented for comparison.
+T0185,B047,0,experiment_description,Run started with Media_B and standard feeding.
+T0186,B047,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0187,B047,96,observation,Mid-run observation: VCD 9.3 million cells/mL and viability 98.3%.
+T0188,B047,168,observation,Late-stage culture appearance documented for comparison.
+T0189,B048,0,experiment_description,Run started with Media_A and intensified feeding.
+T0190,B048,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0191,B048,96,observation,Mid-run observation: VCD 12.8 million cells/mL and viability 97.8%.
+T0192,B048,168,observation,Late-stage culture appearance documented for comparison.
+T0193,B049,0,experiment_description,Run started with Media_B and standard feeding.
+T0194,B049,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0195,B049,96,observation,Mid-run observation: VCD 7.5 million cells/mL and viability 98.2%.
+T0196,B049,168,observation,Late-stage culture appearance documented for comparison.
+T0197,B050,0,experiment_description,Run started with Media_C and early_feed feeding.
+T0198,B050,48,scientist_note,Culture attachment and early growth appeared consistent.
+T0199,B050,96,observation,Mid-run observation: VCD 12.0 million cells/mL and viability 98.3%.
+T0200,B050,168,observation,Late-stage culture appearance documented for comparison.

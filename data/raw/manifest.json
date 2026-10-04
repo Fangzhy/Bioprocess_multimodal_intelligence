@@ -1,0 +1,53 @@
+{
+  "generator_version": "1.0.0",
+  "config": {
+    "n_batches": 50,
+    "duration_hr": 240,
+    "sample_interval_hr": 4,
+    "random_seed": 42,
+    "image_size_px": 128,
+    "image_timepoints_hr": [
+      48,
+      96,
+      168
+    ]
+  },
+  "notice": "Synthetic educational bioprocess data. Microscopy-style images are illustrative and are not real microscopy measurements.",
+  "assumptions": [
+    "Generic mammalian fed-batch behavior represented by illustrative equations.",
+    "Titer is derived from integrated viable biomass and a synthetic productivity factor.",
+    "Notes and images are generated from the same simulated process state."
+  ],
+  "units": {
+    "time_hr": "hour",
+    "temperature_c": "degree Celsius",
+    "ph": "dimensionless",
+    "do_pct": "percent air saturation",
+    "agitation_rpm": "revolutions per minute",
+    "air_flow_slpm": "standard liter per minute",
+    "o2_flow_slpm": "standard liter per minute",
+    "co2_flow_slpm": "standard liter per minute",
+    "feed_rate_ml_hr": "milliliter per hour",
+    "glucose_g_l": "gram per liter",
+    "lactate_g_l": "gram per liter",
+    "viable_cell_density_million_ml": "million cells per milliliter",
+    "viability_pct": "percent",
+    "titer_g_l": "gram per liter"
+  },
+  "row_counts": {
+    "batches": 50,
+    "sensor_data": 3050,
+    "outcomes": 50,
+    "text_records": 200,
+    "images": 150,
+    "scenario_truth": 50
+  },
+  "files": {
+    "data/raw/batches.csv": "e84171ec4354399a539027617ec554fb9283d7f1b9e70798df5eaa4f5e4b8236",
+    "data/raw/sensor_data.csv": "e7a05b454cbf4fc909497ebb8f3ee553831c38ca9b97c4ae0fb23750c6d47b47",
+    "data/raw/outcomes.csv": "dbb5463b5a773b941f4e703d5b82df64be9124c646a83cd7fffab5745a19dcda",
+    "data/raw/text_records.csv": "2a92efcca111ef01bf700d0f55e240f4f4415cb6aa06493f195e286965336e7b",
+    "data/raw/images.csv": "236add6a01159936bd39880fd567415fc41928b968baa131d95670bfe0b63e3f",
+    "data/evaluation/scenario_truth.csv": "beee1e65690d986f568da61791cbfa4273df3804ddfe3a4d483d38acfe0d1fed"
+  }
+}
