@@ -1,0 +1,24 @@
+# Streamlit application and data analysis
+streamlit>=1.42,<2
+numpy>=1.26,<3
+pandas>=2.2,<3
+plotly>=5.24,<7
+Pillow>=10,<13
+openpyxl>=3.1,<4
+requests>=2.32,<3
+
+# Tabular machine learning
+scikit-learn>=1.5,<2
+xgboost>=2.1,<4
+joblib>=1.4,<2
+
+# Text and image embeddings plus vector storage
+sentence-transformers>=3,<6
+open-clip-torch>=2.30,<4
+chromadb>=1,<2
+
+# FastAPI inference backend
+fastapi>=0.115,<1
+uvicorn[standard]>=0.34,<1
+pydantic>=2.10,<3
+python-multipart>=0.0.20,<1
