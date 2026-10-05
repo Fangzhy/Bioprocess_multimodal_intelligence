@@ -4,7 +4,7 @@ Analyze bioreactor runs by combining process sensor data, experimental metadata,
 
 ## Application status
 
-Milestones 1 through 3 are complete. The minimal Streamlit application, project skeleton, reproducible synthetic demonstration dataset, and SQLite database are implemented. Analytics will be added in later milestones; the functions below describe the intended application.
+Milestones 1 through 4 are complete. The project now includes its skeleton, reproducible synthetic demonstration dataset, SQLite database, and an interactive Streamlit process-data dashboard. The remaining functions below describe the planned application.
 
 ## Application functions
 
@@ -65,6 +65,15 @@ streamlit run app.py
 ```
 
 Open the local URL printed by Streamlit. The welcome page should display the platform title and confirm that Streamlit and the Python environment are working.
+
+The implemented dashboard contains four pages:
+
+- **Overview** summarizes dataset size, final outcomes, titer distribution, and the relationship between maximum VCD and final titer.
+- **Batch Explorer** plots selected process trajectories and shows batch statistics, scientist notes, and synthetic microscopy images.
+- **Batch Comparison** compares a selected run with a metadata-based historical cohort using the reference mean and one standard-deviation band.
+- **Data Quality** reports missing values, duplicate keys, engineering-range violations, IQR outliers, and time-series coverage.
+
+The comparison cohorts use cell-line and media metadata and always exclude the selected batch. They do not use the planted abnormal-scenario labels stored in the evaluation data.
 
 `requirements.txt` contains the application, ML, embedding, vector-database, and FastAPI dependencies. `requirements-dev.txt` adds JupyterLab, pytest, HTTP test support, and Ruff. The launch commands for the Streamlit and FastAPI applications will be added after their entry points are implemented.
 
