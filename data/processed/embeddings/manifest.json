@@ -1,0 +1,16 @@
+{
+  "text": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "dimension": 384,
+    "count": 200,
+    "normalized": true
+  },
+  "image": {
+    "model": "ViT-B-32",
+    "pretrained": "laion2b_s34b_b79k",
+    "dimension": 512,
+    "count": 150,
+    "normalized": true
+  },
+  "distance_metric": "cosine"
+}
