@@ -1,0 +1,61 @@
+model,feature,importance
+Linear Regression,vcd_auc_million_cell_hr_ml,2.911634202032708
+Linear Regression,co2_flow_mean_slpm,1.8885194348940384
+Linear Regression,air_flow_mean_slpm,0.6841695858146106
+Linear Regression,lactate_max_g_l,0.5198818618395779
+Linear Regression,glucose_min_g_l,0.2686092159266404
+Linear Regression,lactate_final_g_l,0.2582737288190591
+Linear Regression,total_feed_l,0.21816182108360677
+Linear Regression,feed_strategy_standard,0.1948019037362521
+Linear Regression,seed_density_million_ml,0.19402084519030902
+Linear Regression,glucose_final_g_l,0.16208214197597842
+Linear Regression,feed_strategy_intensified,0.15813961172858884
+Linear Regression,do_std_pct,0.15282816725778364
+Linear Regression,ph_std,0.13766361862737794
+Linear Regression,do_mean_pct,0.13034830968532285
+Linear Regression,growth_rate_per_hr,0.09746930100737236
+PLS,do_mean_pct,0.12643232381103614
+PLS,do_std_pct,0.1117316760873736
+PLS,glucose_min_g_l,0.09174088331030454
+PLS,growth_rate_per_hr,0.09110398506380958
+PLS,o2_flow_mean_slpm,0.08448165482677714
+PLS,lactate_max_g_l,0.07319862443742853
+PLS,agitation_mean_rpm,0.07311224006558306
+PLS,media_type_Media_C,0.06695646253735103
+PLS,ph_std,0.05958868281576969
+PLS,media_type_Media_B,0.05452677203433636
+PLS,bioreactor_scale_l,0.0529648769493415
+PLS,vcd_auc_million_cell_hr_ml,0.05092767837573512
+PLS,total_feed_l,0.04996622214973643
+PLS,seed_density_million_ml,0.04593730947733385
+PLS,peak_vcd_million_ml,0.04043066699585213
+Random Forest,lactate_max_g_l,0.3064122390104075
+Random Forest,agitation_mean_rpm,0.13773617226706678
+Random Forest,glucose_min_g_l,0.10001804545882526
+Random Forest,peak_vcd_million_ml,0.06349642322430095
+Random Forest,do_std_pct,0.04812895913882706
+Random Forest,vcd_auc_million_cell_hr_ml,0.04614491609770119
+Random Forest,co2_flow_mean_slpm,0.042414538502046385
+Random Forest,final_vcd_million_ml,0.04120659948798873
+Random Forest,air_flow_mean_slpm,0.03945677595646937
+Random Forest,media_type_Media_B,0.01845823042211508
+Random Forest,glucose_final_g_l,0.018044781591965046
+Random Forest,growth_rate_per_hr,0.014332656351110747
+Random Forest,temperature_std_c,0.013908858018522359
+Random Forest,ph_mean,0.013566206497463242
+Random Forest,total_feed_l,0.012453782234690146
+XGBoost,co2_flow_mean_slpm,0.24388623237609863
+XGBoost,lactate_max_g_l,0.2116871178150177
+XGBoost,vcd_auc_million_cell_hr_ml,0.18504200875759125
+XGBoost,air_flow_mean_slpm,0.09002738445997238
+XGBoost,agitation_mean_rpm,0.049971431493759155
+XGBoost,media_type_Media_C,0.03008340112864971
+XGBoost,media_type_Media_B,0.02808632329106331
+XGBoost,glucose_final_g_l,0.026055404916405678
+XGBoost,glucose_min_g_l,0.025203336030244827
+XGBoost,peak_vcd_million_ml,0.01526230201125145
+XGBoost,do_std_pct,0.014862054958939552
+XGBoost,final_vcd_million_ml,0.009852942079305649
+XGBoost,media_type_Media_A,0.009286129847168922
+XGBoost,do_min_pct,0.0076881577260792255
+XGBoost,total_feed_l,0.006746538449078798

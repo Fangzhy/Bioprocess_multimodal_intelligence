@@ -4,7 +4,7 @@ Analyze bioreactor runs by combining process sensor data, experimental metadata,
 
 ## Application status
 
-Milestones 1 through 4 are complete. The project now includes its skeleton, reproducible synthetic demonstration dataset, SQLite database, and an interactive Streamlit process-data dashboard. The remaining functions below describe the planned application.
+Milestones 1 through 5 are complete. The project now includes its skeleton, reproducible synthetic demonstration dataset, SQLite database, interactive Streamlit process-data dashboard, and tabular predictive-modeling workflow. The remaining functions below describe the planned application.
 
 ## Application functions
 
@@ -74,6 +74,26 @@ The implemented dashboard contains four pages:
 - **Data Quality** reports missing values, duplicate keys, engineering-range violations, IQR outliers, and time-series coverage.
 
 The comparison cohorts use cell-line and media metadata and always exclude the selected batch. They do not use the planted abnormal-scenario labels stored in the evaluation data.
+
+## Tabular predictive modeling
+
+Train the Milestone 5 models from the repository root:
+
+```powershell
+python -m src.models.train_tabular
+```
+
+The workflow creates one row per batch from process summaries and experimental metadata, then compares Linear Regression, PLS, Random Forest, and XGBoost. It uses a fixed 40-batch training set, a 10-batch holdout set, and five-fold cross-validation inside the training set. All preprocessing is part of each fitted pipeline.
+
+The feature table excludes batch identifiers, dates, media lots, planted scenario labels, and all titer trajectory values. Because features use measurements through 240 hours, the experiment is an end-of-run prediction rather than an early forecast.
+
+Generated outputs are stored in `artifacts/tabular/`:
+
+- Complete versioned preprocessing-and-model pipelines for later FastAPI inference
+- A manifest containing the input schema, batch split, target units, library versions, metrics, and limitations
+- Batch features, held-out predictions, model metrics, and feature-importance summaries
+
+Open **Predictive Modeling** in Streamlit to compare held-out RMSE, MAE, and R², inspect predicted-versus-actual and residual plots, and review model feature signals. Metrics from 50 synthetic batches are illustrative and have substantial sampling uncertainty.
 
 `requirements.txt` contains the application, ML, embedding, vector-database, and FastAPI dependencies. `requirements-dev.txt` adds JupyterLab, pytest, HTTP test support, and Ruff. The launch commands for the Streamlit and FastAPI applications will be added after their entry points are implemented.
 
