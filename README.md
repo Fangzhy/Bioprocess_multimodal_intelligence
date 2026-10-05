@@ -4,7 +4,7 @@ Analyze bioreactor runs by combining process sensor data, experimental metadata,
 
 ## Application status
 
-Milestones 1 and 2 are complete. The minimal Streamlit application, project skeleton, and reproducible synthetic demonstration dataset are implemented. Analytics will be added in later milestones; the functions below describe the intended application.
+Milestones 1 through 3 are complete. The minimal Streamlit application, project skeleton, reproducible synthetic demonstration dataset, and SQLite database are implemented. Analytics will be added in later milestones; the functions below describe the intended application.
 
 ## Application functions
 
@@ -88,6 +88,28 @@ Generated tables are stored under `data/raw/`, scenario truth is stored under `d
 
 All generated records are synthetic educational data. The microscopy-style images are programmatic illustrations, not real microscopy measurements, and the simulator is not a validated biological process model.
 
+## SQLite database
+
+Build or rebuild the database from the generated CSV files:
+
+```powershell
+python -m src.data.build_database
+```
+
+This creates `database/bioprocess.db` from `database/schema.sql`. Rebuilding is idempotent: the loader validates the source relationships, builds a temporary database, runs SQLite integrity and foreign-key checks, and then atomically replaces the existing snapshot.
+
+The database contains:
+
+| Table | Rows | Purpose |
+| --- | ---: | --- |
+| `batches` | 50 | Experimental metadata |
+| `sensor_data` | 3,050 | Time-series process measurements |
+| `outcomes` | 50 | Final titer, viability, peak VCD, and quality score |
+| `text_records` | 200 | Timestamped descriptions, notes, and observations |
+| `images` | 150 | Metadata and paths for illustrative microscopy images |
+
+Explore SELECT, WHERE, JOIN, GROUP BY, and parameterized queries in `notebooks/02_query_database.ipynb`.
+
 ## Project structure
 
 | Path | Purpose |
@@ -96,7 +118,7 @@ All generated records are synthetic educational data. The microscopy-style image
 | `data/raw/` | Source synthetic or imported files before cleaning |
 | `data/processed/` | Cleaned datasets and prepared feature tables |
 | `data/evaluation/` | Planted scenario truth kept separate from normal model inputs |
-| `database/` | SQLite database files and later database assets |
+| `database/` | Versioned SQLite schema and reproducible database snapshot |
 | `images/` | Synthetic or sourced microscopy images used by the demo |
 | `notebooks/` | Step-by-step experiments before stable code moves into `src/` |
 | `src/data/` | Reusable data generation, validation, and loading code |
