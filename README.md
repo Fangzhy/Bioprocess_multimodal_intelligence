@@ -66,7 +66,9 @@ streamlit run app.py
 
 Open the local URL printed by Streamlit. The welcome page should display the platform title and confirm that Streamlit and the Python environment are working.
 
-The implemented dashboard contains four pages:
+`app.py` is the navigation entry point. It registers every page explicitly with `st.navigation()` and `st.Page()`, including the default **Overview** page implemented in `views/overview.py`. Sidebar labels and icons therefore come from `app.py` rather than from filenames.
+
+The core process dashboard includes:
 
 - **Overview** summarizes dataset size, final outcomes, titer distribution, and the relationship between maximum VCD and final titer.
 - **Batch Explorer** plots selected process trajectories and shows batch statistics, scientist notes, and synthetic microscopy images.
