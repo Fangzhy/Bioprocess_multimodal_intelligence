@@ -43,7 +43,7 @@ All twelve milestones are complete. The project includes structured and multimod
 
 ## Setup
 
-Local development targets Windows with Python and Git. The Streamlit frontend and FastAPI backend will run as separate local processes. Docker is not required for local learning, though a container may be added later if the selected backend host requires one.
+Local development targets Windows with Python and Git. New-run predictions can run directly inside Streamlit or through FastAPI as a separate process. Docker is not required for local learning, though a container may be added later if the selected backend host requires one.
 
 Create and populate the development environment with uv:
 
@@ -144,7 +144,9 @@ Start the backend from the repository root in a separate terminal:
 
 Requests supply raw run data; the backend calculates the same features and embeddings used during training. It never accepts uploaded models or filesystem paths. The multimodal response reports supplied and missing modalities, model version, target units, cutoff, low-titer threshold, and one prediction per model family.
 
-Open **New Run Prediction** in Streamlit after the API is running. Set `BIOPROCESS_API_URL` for a remote HTTPS backend. Set the same optional `BIOPROCESS_API_TOKEN` in both environments to require the `X-API-Key` header. See `.env.example` for variable names.
+Open **New Run Prediction** and keep **Built-in demo** selected to run the trusted pipelines directly inside Streamlit. This is the default for Streamlit Community Cloud and does not require a second service.
+
+Select **FastAPI service** when testing the service architecture locally or after deploying the backend separately. `localhost:8000` is valid only on the computer running FastAPI; it does not refer to your computer from Streamlit Community Cloud. For a hosted API, set `BIOPROCESS_API_URL` to its public HTTPS URL. Set the same optional `BIOPROCESS_API_TOKEN` in both environments to require the `X-API-Key` header. See `.env.example` for variable names.
 
 The page includes **Load tabular example** and **Load multimodal example** buttons. Each loads an editable synthetic request derived from B018 and relabeled `NEW_DEMO_001`. Users can inspect or download the metadata JSON, 61-row sensor CSV, timestamped notes JSON, and three illustrative microscopy images before submitting them through the normal API endpoints. The example request excludes titer and final outcomes.
 
@@ -165,7 +167,7 @@ The integration was live-tested with the configured free-tier model on October 4
 
 The dependency stack was smoke-tested on Python 3.12.14 with Streamlit 1.65.0, scikit-learn 1.9.1, XGBoost 3.4.1, ChromaDB 1.5.9, Sentence Transformers 5.7.0, OpenCLIP 3.3.0, and FastAPI 0.142.2. The selected MiniLM and CLIP checkpoints are recorded in the embedding manifest.
 
-The deployed Streamlit app will call the FastAPI service over HTTPS. The API will load versioned, trusted model pipelines created during training; users will upload prediction data, not model files. The backend URL and an application API token will be configured through environment variables or Streamlit secrets.
+The deployed Streamlit portfolio can run inference internally. If the FastAPI architecture is deployed separately, Streamlit calls it over HTTPS. Both modes load the same versioned, trusted pipelines; users upload prediction data, not model files. Configure the backend URL and optional application token through environment variables or Streamlit secrets.
 
 When the OpenRouter integration is implemented, local credentials will use `.streamlit/secrets.toml`, which is already excluded by `.gitignore`. Hosted credentials will use Streamlit Community Cloud's Secrets settings. See [Streamlit secrets management](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/secrets-management).
 

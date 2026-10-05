@@ -8,6 +8,7 @@ from streamlit.testing.v1 import AppTest
 from backend.schemas import BatchMetadata
 from src.inference.examples import EXAMPLE_BATCH_ID, load_example_run
 from src.inference.predict import REQUIRED_SENSOR_COLUMNS, parse_sensor_csv
+from src.inference.service import predict_request
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
@@ -33,13 +34,27 @@ def test_example_buttons_load_tabular_and_multimodal_forms() -> None:
     app.run(timeout=30)
 
     app.button[0].click().run(timeout=30)
-    assert app.radio[0].value == "Built-in example"
-    assert app.radio[1].value == "Tabular baseline"
+    assert app.radio[0].value == "Built-in demo"
+    assert app.radio[1].value == "Built-in example"
+    assert app.radio[2].value == "Tabular baseline"
     assert "NEW_DEMO_001" in app.text_area[0].value
 
     app.button[1].click().run(timeout=30)
-    assert app.radio[0].value == "Built-in example"
-    assert app.radio[1].value == "Multimodal"
+    assert app.radio[1].value == "Built-in example"
+    assert app.radio[2].value == "Multimodal"
     assert any(
         "Synthetic microscopy images" in markdown.value for markdown in app.markdown
     )
+
+
+def test_built_in_prediction_works_without_fastapi() -> None:
+    example = load_example_run()
+    response = predict_request(
+        "tabular",
+        json.dumps(example.metadata).encode("utf-8"),
+        example.sensor_data.to_csv(index=False).encode("utf-8"),
+    )
+
+    assert response.model_version == "tabular-v1"
+    assert response.modalities_present == ["metadata", "sensor"]
+    assert len(response.predictions) == 4
