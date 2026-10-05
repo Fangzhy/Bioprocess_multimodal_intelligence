@@ -5,18 +5,18 @@ from __future__ import annotations
 import json
 from typing import Annotated
 
-import numpy as np
 from fastapi import Depends, FastAPI, File, Form, HTTPException, UploadFile
 from pydantic import ValidationError
 
 from backend.dependencies import load_registry, require_api_key
-from backend.schemas import BatchMetadata, ModelPrediction, PredictionResponse
+from backend.schemas import BatchMetadata, PredictionResponse
 from backend.settings import settings
 from src.inference.predict import (
     make_multimodal_row,
     make_tabular_row,
     parse_sensor_csv,
 )
+from src.inference.service import predict_row
 
 app = FastAPI(title="Bioprocess Model Inference API", version="1.0.0")
 
@@ -34,32 +34,6 @@ async def _parse_inputs(metadata: str, sensor_file: UploadFile):
     except ValueError as error:
         raise HTTPException(status_code=422, detail=str(error)) from error
     return parsed_metadata, sensors
-
-
-def _response(kind: str, row, modalities: list[str]) -> PredictionResponse:
-    manifest, models = load_registry(kind)
-    threshold = manifest.get("low_titer_threshold_g_l")
-    predictions = []
-    for model_id, pipeline in sorted(models.items()):
-        value = float(np.asarray(pipeline.predict(row)).reshape(-1)[0])
-        predictions.append(
-            ModelPrediction(
-                model_id=model_id,
-                predicted_final_titer_g_l=value,
-                low_titer=value < threshold if threshold is not None else None,
-            )
-        )
-    version = manifest.get("model_version", "unknown")
-    missing = [item for item in ["text", "image"] if item not in modalities]
-    return PredictionResponse(
-        model_version=version,
-        workflow=kind,
-        modalities_present=modalities,
-        missing_modalities=missing if kind == "multimodal" else [],
-        low_titer_threshold_g_l=threshold,
-        predictions=predictions,
-        warnings=["End-of-run model using measurements through 240 hours."],
-    )
 
 
 @app.get("/health")
@@ -102,7 +76,7 @@ async def predict_tabular(
 ) -> PredictionResponse:
     parsed_metadata, sensors = await _parse_inputs(metadata, sensor_file)
     row = make_tabular_row(parsed_metadata, sensors)
-    return _response("tabular", row, ["metadata", "sensor"])
+    return predict_row("tabular", row, ["metadata", "sensor"])
 
 
 @app.post(
@@ -139,4 +113,4 @@ async def predict_multimodal(
         modalities.append("text")
     if image_bytes:
         modalities.append("image")
-    return _response("multimodal", row, modalities)
+    return predict_row("multimodal", row, modalities)

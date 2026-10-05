@@ -11,10 +11,11 @@ import requests
 import streamlit as st
 
 from src.inference.examples import load_example_run
+from src.inference.service import predict_request
 
 st.set_page_config(page_title="New Run Prediction", page_icon="🔮", layout="wide")
 st.title("New Run Prediction")
-st.caption("Inspect, edit, and submit raw run data to the versioned FastAPI service")
+st.caption("Inspect, edit, and submit raw run data to versioned model pipelines")
 
 
 @st.cache_data
@@ -51,9 +52,28 @@ button_columns[1].button(
     width="stretch",
 )
 
-api_url = st.text_input(
-    "FastAPI base URL", os.getenv("BIOPROCESS_API_URL", "http://localhost:8000")
+prediction_engine = st.radio(
+    "Prediction engine",
+    ["Built-in demo", "FastAPI service"],
+    horizontal=True,
+    help=(
+        "Built-in demo works on Streamlit Community Cloud. FastAPI requires a separately "
+        "deployed backend reachable over HTTPS."
+    ),
 )
+api_url = os.getenv("BIOPROCESS_API_URL", "http://localhost:8000")
+if prediction_engine == "FastAPI service":
+    api_url = st.text_input("FastAPI base URL", api_url)
+    if "localhost" in api_url or "127.0.0.1" in api_url:
+        st.warning(
+            "A localhost URL works only when FastAPI runs on the same machine. On Streamlit "
+            "Community Cloud, configure the public HTTPS URL of a separately deployed API."
+        )
+else:
+    st.info(
+        "Predictions run inside this Streamlit app with the same saved pipelines used by "
+        "FastAPI. This mode is suitable for the hosted portfolio demo."
+    )
 input_source = st.radio(
     "Input source",
     ["Upload files", "Built-in example"],
@@ -186,24 +206,37 @@ if st.button("Request predictions", type="primary", disabled=not ready):
     if workflow == "Multimodal":
         files.extend(("images", payload) for payload in image_payloads)
 
-    headers = {}
-    token = os.getenv("BIOPROCESS_API_TOKEN")
-    if token:
-        headers["X-API-Key"] = token
     try:
-        response = requests.post(
-            f"{api_url.rstrip('/')}/v1/predict/{endpoint}",
-            data={"metadata": metadata_content.decode("utf-8")},
-            files=files,
-            headers=headers,
-            timeout=120,
-        )
-        response.raise_for_status()
-        result = response.json()
+        if prediction_engine == "Built-in demo":
+            result = predict_request(
+                endpoint,
+                metadata_content,
+                sensor_content,
+                notes_content if workflow == "Multimodal" else None,
+                [content for _, content, _ in image_payloads]
+                if workflow == "Multimodal"
+                else None,
+            ).model_dump()
+        else:
+            headers = {}
+            token = os.getenv("BIOPROCESS_API_TOKEN")
+            if token:
+                headers["X-API-Key"] = token
+            response = requests.post(
+                f"{api_url.rstrip('/')}/v1/predict/{endpoint}",
+                data={"metadata": metadata_content.decode("utf-8")},
+                files=files,
+                headers=headers,
+                timeout=120,
+            )
+            response.raise_for_status()
+            result = response.json()
         st.success(f"Model version: {result['model_version']}")
         st.dataframe(result["predictions"], hide_index=True, width="stretch")
         st.write("Modalities supplied:", ", ".join(result["modalities_present"]))
         for warning in result["warnings"]:
             st.warning(warning)
     except requests.RequestException as error:
-        st.error(f"Inference service request failed: {error}")
+        st.error(f"FastAPI inference request failed: {error}")
+    except (ValueError, OSError) as error:
+        st.error(f"Built-in inference failed: {error}")
