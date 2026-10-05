@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 from src.data.repository import (
@@ -25,6 +26,16 @@ class ExampleRun:
     sensor_data: pd.DataFrame
     notes: pd.DataFrame
     image_paths: tuple[Path, ...]
+    text_embedding: np.ndarray
+    image_embedding: np.ndarray
+
+
+def _pooled_embedding(file_name: str, batch_id: str) -> np.ndarray:
+    stored = np.load(PROJECT_ROOT / "data" / "processed" / "embeddings" / file_name)
+    selected = stored["vectors"][stored["batch_ids"].astype(str) == batch_id]
+    if not len(selected):
+        raise ValueError(f"No stored {file_name} vectors for {batch_id}")
+    return selected.mean(axis=0).astype(np.float32)
 
 
 def load_example_run() -> ExampleRun:
@@ -55,4 +66,6 @@ def load_example_run() -> ExampleRun:
         sensor_data=sensor_data,
         notes=notes,
         image_paths=image_paths,
+        text_embedding=_pooled_embedding("text_embeddings.npz", EXAMPLE_SOURCE_BATCH),
+        image_embedding=_pooled_embedding("image_embeddings.npz", EXAMPLE_SOURCE_BATCH),
     )

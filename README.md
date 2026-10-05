@@ -150,6 +150,8 @@ Select **FastAPI service** when testing the service architecture locally or afte
 
 The page includes **Load tabular example** and **Load multimodal example** buttons. Each loads an editable synthetic request derived from B018 and relabeled `NEW_DEMO_001`. Users can inspect or download the metadata JSON, 61-row sensor CSV, timestamped notes JSON, and three illustrative microscopy images before submitting them through the normal API endpoints. The example request excludes titer and final outcomes.
 
+The unchanged built-in multimodal example reuses its committed pooled text and image embeddings, so it works on a fresh Community Cloud container without downloading MiniLM or CLIP. Custom uploaded notes and images, or edits to the example notes, require the configured encoders; the application first checks the local model cache and then downloads missing public checkpoints from Hugging Face.
+
 ## Scientific copilot
 
 Configure `.env` locally or Streamlit secrets in deployment:

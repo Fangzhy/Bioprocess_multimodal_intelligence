@@ -25,6 +25,8 @@ def test_example_run_matches_api_input_contract() -> None:
     assert "titer_g_l" not in example.sensor_data
     assert len(example.notes) == 4
     assert len(example.image_paths) == 3
+    assert example.text_embedding.shape == (384,)
+    assert example.image_embedding.shape == (512,)
     assert all(path.is_file() for path in example.image_paths)
     assert isinstance(json.loads(example.notes.to_json(orient="records")), list)
 
@@ -57,4 +59,27 @@ def test_built_in_prediction_works_without_fastapi() -> None:
 
     assert response.model_version == "tabular-v1"
     assert response.modalities_present == ["metadata", "sensor"]
+    assert len(response.predictions) == 4
+
+
+def test_built_in_multimodal_example_uses_stored_embeddings(monkeypatch) -> None:
+    example = load_example_run()
+
+    def fail_if_encoder_loads():
+        raise AssertionError("The built-in example should not load an encoder")
+
+    monkeypatch.setattr("src.inference.predict._text_encoder", fail_if_encoder_loads)
+    monkeypatch.setattr("src.inference.predict._image_encoder", fail_if_encoder_loads)
+    response = predict_request(
+        "multimodal",
+        json.dumps(example.metadata).encode("utf-8"),
+        example.sensor_data.to_csv(index=False).encode("utf-8"),
+        example.notes.to_json(orient="records").encode("utf-8"),
+        [path.read_bytes() for path in example.image_paths],
+        example.text_embedding,
+        example.image_embedding,
+    )
+
+    assert response.model_version == "multimodal-v1"
+    assert response.modalities_present == ["metadata", "sensor", "text", "image"]
     assert len(response.predictions) == 4

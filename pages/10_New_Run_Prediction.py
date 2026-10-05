@@ -91,6 +91,8 @@ metadata_content: bytes | None = None
 sensor_content: bytes | None = None
 notes_content: bytes | None = None
 image_payloads: list[tuple[str, bytes, str]] = []
+example_text_embedding = None
+example_image_embedding = None
 
 if input_source == "Built-in example":
     st.info(
@@ -146,6 +148,8 @@ if input_source == "Built-in example":
             width="stretch",
         )
         notes_content = edited_notes.to_json(orient="records", indent=2).encode("utf-8")
+        if edited_notes.equals(example.notes):
+            example_text_embedding = example.text_embedding
         st.download_button(
             "Download notes JSON",
             data=notes_content,
@@ -154,11 +158,17 @@ if input_source == "Built-in example":
         )
 
         st.markdown("**Synthetic microscopy images**")
+        st.caption(
+            "The unchanged built-in notes and images use committed example embeddings, so "
+            "this demonstration does not need to download encoder checkpoints. Editing the "
+            "notes triggers live Sentence Transformer encoding."
+        )
         image_columns = st.columns(len(example.image_paths))
         for column, path in zip(image_columns, example.image_paths, strict=True):
             with column:
                 st.image(str(path), width="stretch", caption=path.name)
             image_payloads.append((path.name, path.read_bytes(), "image/png"))
+        example_image_embedding = example.image_embedding
 else:
     metadata_file = st.file_uploader("Metadata JSON", type=["json"])
     sensor_file = st.file_uploader("Sensor time-series CSV", type=["csv"])
@@ -216,6 +226,8 @@ if st.button("Request predictions", type="primary", disabled=not ready):
                 [content for _, content, _ in image_payloads]
                 if workflow == "Multimodal"
                 else None,
+                example_text_embedding,
+                example_image_embedding,
             ).model_dump()
         else:
             headers = {}

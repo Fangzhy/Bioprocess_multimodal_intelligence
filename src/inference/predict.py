@@ -55,7 +55,10 @@ def make_tabular_row(metadata: BatchMetadata, sensor_data: pd.DataFrame) -> pd.D
 
 @lru_cache(maxsize=1)
 def _text_encoder():
-    return load_text_encoder(local_files_only=True)
+    try:
+        return load_text_encoder(local_files_only=True)
+    except OSError:
+        return load_text_encoder(local_files_only=False)
 
 
 @lru_cache(maxsize=1)
@@ -67,13 +70,20 @@ def make_multimodal_row(
     tabular_row: pd.DataFrame,
     notes: list[str],
     image_bytes: list[bytes],
+    *,
+    text_vector: np.ndarray | None = None,
+    image_vector: np.ndarray | None = None,
 ) -> pd.DataFrame:
-    if notes:
+    if text_vector is not None:
+        text_vector = np.asarray(text_vector, dtype=np.float32)
+    elif notes:
         text_vector = encode_texts(notes, _text_encoder()).mean(axis=0)
     else:
         text_vector = np.zeros(384, dtype=np.float32)
 
-    if image_bytes:
+    if image_vector is not None:
+        image_vector = np.asarray(image_vector, dtype=np.float32)
+    elif image_bytes:
         model, preprocess = _image_encoder()
         tensors = []
         import torch
