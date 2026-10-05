@@ -49,6 +49,8 @@ def predict_request(
     sensor_content: bytes,
     notes_content: bytes | None = None,
     image_contents: list[bytes] | None = None,
+    text_embedding: np.ndarray | None = None,
+    image_embedding: np.ndarray | None = None,
 ) -> PredictionResponse:
     """Validate raw request files and predict without an HTTP round trip."""
 
@@ -76,7 +78,13 @@ def predict_request(
         except (json.JSONDecodeError, TypeError, KeyError) as error:
             raise ValueError("Notes must be a JSON list") from error
     images = image_contents or []
-    row = make_multimodal_row(tabular_row, notes, images)
+    row = make_multimodal_row(
+        tabular_row,
+        notes,
+        images,
+        text_vector=text_embedding,
+        image_vector=image_embedding,
+    )
     modalities = ["metadata", "sensor"]
     if notes:
         modalities.append("text")
