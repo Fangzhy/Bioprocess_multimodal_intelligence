@@ -4,7 +4,7 @@ Analyze bioreactor runs by combining process sensor data, experimental metadata,
 
 ## Application status
 
-Milestones 1 through 5 are complete. The project now includes its skeleton, reproducible synthetic demonstration dataset, SQLite database, interactive Streamlit process-data dashboard, and tabular predictive-modeling workflow. The remaining functions below describe the planned application.
+Milestones 1 through 8 are complete. The project now includes the structured-data dashboard and modeling workflow, semantic note search, CLIP image retrieval, and time-aligned multimodal investigations. The remaining functions below describe the planned application.
 
 ## Application functions
 
@@ -94,6 +94,22 @@ Generated outputs are stored in `artifacts/tabular/`:
 - Batch features, held-out predictions, model metrics, and feature-importance summaries
 
 Open **Predictive Modeling** in Streamlit to compare held-out RMSE, MAE, and R², inspect predicted-versus-actual and residual plots, and review model feature signals. Metrics from 50 synthetic batches are illustrative and have substantial sampling uncertainty.
+
+## Embeddings and multimodal retrieval
+
+Build both ChromaDB collections and reusable embedding matrices with:
+
+```powershell
+python -m src.embeddings.store
+```
+
+The text collection uses `sentence-transformers/all-MiniLM-L6-v2` with 384-dimensional normalized embeddings. The image collection uses OpenCLIP `ViT-B-32` with the `laion2b_s34b_b79k` checkpoint and 512-dimensional normalized embeddings. Both collections use cosine distance.
+
+- **Text Intelligence** searches 200 synthetic scientist records by meaning.
+- **Microscopy Intelligence** retrieves similar synthetic microscopy illustrations and joins their batch outcomes.
+- **Multimodal Investigation** aligns sensor readings, notes, and image captures to an inclusive event window and shows the final outcome as retrospective context.
+
+The first embedding build downloads public model weights to the local Hugging Face cache. Chroma data is stored under `database/chroma/`, while reusable matrices and the encoder manifest are stored under `data/processed/embeddings/`.
 
 `requirements.txt` contains the application, ML, embedding, vector-database, and FastAPI dependencies. `requirements-dev.txt` adds JupyterLab, pytest, HTTP test support, and Ruff. The launch commands for the Streamlit and FastAPI applications will be added after their entry points are implemented.
 

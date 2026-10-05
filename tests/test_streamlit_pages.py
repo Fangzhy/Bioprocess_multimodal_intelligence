@@ -16,6 +16,9 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
         ("pages/2_Batch_Comparison.py", "Batch Comparison"),
         ("pages/3_Data_Quality.py", "Data Quality"),
         ("pages/4_Predictive_Modeling.py", "Predictive Modeling"),
+        ("pages/5_Text_Intelligence.py", "Text Intelligence"),
+        ("pages/6_Microscopy_Intelligence.py", "Microscopy Intelligence"),
+        ("pages/7_Multimodal_Investigation.py", "Multimodal Investigation"),
     ],
 )
 def test_streamlit_page_runs_without_exception(
