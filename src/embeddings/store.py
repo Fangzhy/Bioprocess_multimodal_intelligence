@@ -107,14 +107,14 @@ def build_embedding_store(
     embedding_path.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(
         embedding_path / "text_embeddings.npz",
-        ids=notes["text_id"].to_numpy(),
-        batch_ids=notes["batch_id"].to_numpy(),
+        ids=notes["text_id"].to_numpy(dtype=str),
+        batch_ids=notes["batch_id"].to_numpy(dtype=str),
         vectors=text_vectors,
     )
     np.savez_compressed(
         embedding_path / "image_embeddings.npz",
-        ids=images["image_id"].to_numpy(),
-        batch_ids=images["batch_id"].to_numpy(),
+        ids=images["image_id"].to_numpy(dtype=str),
+        batch_ids=images["batch_id"].to_numpy(dtype=str),
         vectors=image_vectors,
     )
     manifest = {

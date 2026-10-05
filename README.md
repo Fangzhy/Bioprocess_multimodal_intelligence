@@ -4,7 +4,7 @@ Analyze bioreactor runs by combining process sensor data, experimental metadata,
 
 ## Application status
 
-Milestones 1 through 8 are complete. The project now includes the structured-data dashboard and modeling workflow, semantic note search, CLIP image retrieval, and time-aligned multimodal investigations. The remaining functions below describe the planned application.
+Milestones 1 through 10 are complete. The project now includes structured and multimodal analytics, semantic and image retrieval, event alignment, interpretable evidence fusion, and a controlled multimodal modeling comparison. The remaining functions below describe the planned application.
 
 ## Application functions
 
@@ -110,6 +110,20 @@ The text collection uses `sentence-transformers/all-MiniLM-L6-v2` with 384-dimen
 - **Multimodal Investigation** aligns sensor readings, notes, and image captures to an inclusive event window and shows the final outcome as retrospective context.
 
 The first embedding build downloads public model weights to the local Hugging Face cache. Chroma data is stored under `database/chroma/`, while reusable matrices and the encoder manifest are stored under `data/processed/embeddings/`.
+
+## Multimodal analytics and modeling
+
+**Multimodal Analytics** combines percentile-ranked sensor, text, and image anomaly evidence with the exploratory weights 0.5, 0.2, and 0.3. Missing modality weights are renormalized. This score helps prioritize investigations and is not a calibrated failure probability.
+
+Train the controlled feature-level fusion experiment with:
+
+```powershell
+python -m src.models.train_multimodal
+```
+
+The experiment applies PCA inside every training fold and compares the same four model families and held-out batches across tabular only, tabular plus text, tabular plus image, and complete fusion. It evaluates 20 text and 20 image principal components as an experiment. One-hot metadata and modality count indicators make the fitted feature totals differ from the conceptual 70-feature example.
+
+With the current 50-batch synthetic dataset, full multimodal Random Forest achieved the best held-out RMSE, but this result is highly uncertain because the sample count is small and notes and images derive from the same simulator state. **Multimodal Predictive Modeling** shows the complete ablation table, regression metrics, residuals, PCA dimensions, and low-titer event metrics.
 
 `requirements.txt` contains the application, ML, embedding, vector-database, and FastAPI dependencies. `requirements-dev.txt` adds JupyterLab, pytest, HTTP test support, and Ruff. The launch commands for the Streamlit and FastAPI applications will be added after their entry points are implemented.
 
