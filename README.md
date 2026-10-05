@@ -146,6 +146,8 @@ Requests supply raw run data; the backend calculates the same features and embed
 
 Open **New Run Prediction** in Streamlit after the API is running. Set `BIOPROCESS_API_URL` for a remote HTTPS backend. Set the same optional `BIOPROCESS_API_TOKEN` in both environments to require the `X-API-Key` header. See `.env.example` for variable names.
 
+The page includes **Load tabular example** and **Load multimodal example** buttons. Each loads an editable synthetic request derived from B018 and relabeled `NEW_DEMO_001`. Users can inspect or download the metadata JSON, 61-row sensor CSV, timestamped notes JSON, and three illustrative microscopy images before submitting them through the normal API endpoints. The example request excludes titer and final outcomes.
+
 ## Scientific copilot
 
 Configure `.env` locally or Streamlit secrets in deployment:
