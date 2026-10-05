@@ -24,6 +24,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
             "pages/9_Multimodal_Predictive_Modeling.py",
             "Multimodal Predictive Modeling",
         ),
+        ("pages/10_New_Run_Prediction.py", "New Run Prediction"),
+        ("pages/11_Scientific_Copilot.py", "Scientific Copilot"),
     ],
 )
 def test_streamlit_page_runs_without_exception(

@@ -4,7 +4,7 @@ Analyze bioreactor runs by combining process sensor data, experimental metadata,
 
 ## Application status
 
-Milestones 1 through 10 are complete. The project now includes structured and multimodal analytics, semantic and image retrieval, event alignment, interpretable evidence fusion, and a controlled multimodal modeling comparison. The remaining functions below describe the planned application.
+All twelve milestones are complete. The project includes structured and multimodal analytics, semantic and image retrieval, event alignment, interpretable evidence fusion, controlled multimodal modeling, a FastAPI inference backend, and an evidence-grounded OpenRouter scientific copilot.
 
 ## Application functions
 
@@ -125,9 +125,41 @@ The experiment applies PCA inside every training fold and compares the same four
 
 With the current 50-batch synthetic dataset, full multimodal Random Forest achieved the best held-out RMSE, but this result is highly uncertain because the sample count is small and notes and images derive from the same simulator state. **Multimodal Predictive Modeling** shows the complete ablation table, regression metrics, residuals, PCA dimensions, and low-titer event metrics.
 
-`requirements.txt` contains the application, ML, embedding, vector-database, and FastAPI dependencies. `requirements-dev.txt` adds JupyterLab, pytest, HTTP test support, and Ruff. The launch commands for the Streamlit and FastAPI applications will be added after their entry points are implemented.
+## FastAPI inference backend
 
-The dependency stack was smoke-tested on Python 3.12.14 with Streamlit 1.65.0, scikit-learn 1.9.1, XGBoost 3.4.1, ChromaDB 1.5.9, Sentence Transformers 5.7.0, OpenCLIP 3.3.0, and FastAPI 0.142.2. Checkpoints for Sentence Transformers and CLIP have not been downloaded yet; their exact model identifiers will be selected in Milestones 6 and 7.
+Start the backend from the repository root in a separate terminal:
+
+```powershell
+.\.venv\Scripts\python.exe -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+```
+
+| Endpoint | Purpose |
+| --- | --- |
+| `GET /health` | Verify that both trusted artifact registries load |
+| `GET /v1/models` | List model IDs, versions, target units, and cutoff |
+| `POST /v1/predict/tabular` | Predict from metadata JSON and a sensor CSV |
+| `POST /v1/predict/multimodal` | Add an optional notes JSON file and microscopy images |
+
+Requests supply raw run data; the backend calculates the same features and embeddings used during training. It never accepts uploaded models or filesystem paths. The multimodal response reports supplied and missing modalities, model version, target units, cutoff, low-titer threshold, and one prediction per model family.
+
+Open **New Run Prediction** in Streamlit after the API is running. Set `BIOPROCESS_API_URL` for a remote HTTPS backend. Set the same optional `BIOPROCESS_API_TOKEN` in both environments to require the `X-API-Key` header. See `.env.example` for variable names.
+
+## Scientific copilot
+
+Configure `.env` locally or Streamlit secrets in deployment:
+
+```text
+OPEN_ROUTER_API=your-key
+OPENROUTER_MODEL=openrouter/free
+```
+
+The configured model is tried first, with `openrouter/free` as fallback. **Scientific Copilot** builds a traceable evidence bundle from SQLite, ChromaDB, and calculated cohort comparisons before making the request. The evidence stays visible if the external service is unavailable. The prompt requires measured observations, labels causal interpretations as hypotheses, and states that the demonstration data and microscopy are synthetic.
+
+The integration was live-tested with the configured free-tier model on October 4, 2026. Free model availability and rate limits can change, so `openrouter/free` is used as the portable fallback.
+
+`requirements.txt` contains the full application stack. `requirements-backend.txt` provides the packages needed by the inference service, while `requirements-dev.txt` adds JupyterLab, pytest, HTTP test support, and Ruff.
+
+The dependency stack was smoke-tested on Python 3.12.14 with Streamlit 1.65.0, scikit-learn 1.9.1, XGBoost 3.4.1, ChromaDB 1.5.9, Sentence Transformers 5.7.0, OpenCLIP 3.3.0, and FastAPI 0.142.2. The selected MiniLM and CLIP checkpoints are recorded in the embedding manifest.
 
 The deployed Streamlit app will call the FastAPI service over HTTPS. The API will load versioned, trusted model pipelines created during training; users will upload prediction data, not model files. The backend URL and an application API token will be configured through environment variables or Streamlit secrets.
 
