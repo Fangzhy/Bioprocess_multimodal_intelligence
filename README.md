@@ -1,4 +1,6 @@
 ﻿# Bioprocess Multimodal Intelligence Platform
+[Launch live demo](https://bioprocessmultimodalintelligence-mkdj9hrgkbmgj4y5jluwjv.streamlit.app/)
+
 
 Analyze bioreactor runs by combining process sensor data, experimental metadata, scientist notes, and microscopy images to understand culture behavior, identify anomalous runs, retrieve similar historical experiments, and explain factors associated with final outcomes such as titer or viability.
 
