@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -34,6 +35,16 @@ def get_client(path: Path = CHROMA_PATH) -> chromadb.PersistentClient:
 
 def load_text_encoder(*, local_files_only: bool = False) -> SentenceTransformer:
     return SentenceTransformer(TEXT_MODEL_ID, local_files_only=local_files_only)
+
+
+@lru_cache(maxsize=1)
+def get_cached_text_encoder() -> SentenceTransformer:
+    """Reuse the query encoder, downloading missing checkpoint files when needed."""
+
+    try:
+        return load_text_encoder(local_files_only=True)
+    except OSError:
+        return load_text_encoder(local_files_only=False)
 
 
 def load_image_encoder():
@@ -140,7 +151,7 @@ def build_embedding_store(
 
 
 def search_notes(query: str, limit: int = 5, batch_id: str | None = None) -> list[dict]:
-    vector = encode_texts([query], load_text_encoder(local_files_only=True))[0]
+    vector = encode_texts([query], get_cached_text_encoder())[0]
     collection = get_client().get_collection(TEXT_COLLECTION)
     where = {"batch_id": batch_id} if batch_id else None
     result = collection.query(
